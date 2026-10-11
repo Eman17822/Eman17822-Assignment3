@@ -11,7 +11,6 @@
 
 internal class Program
 {
-    // Shared field: يمكن لجميع الدوال static داخل Program الوصول إليه.
     private static int sharedNumber = 10;
 
     static void Main(string[] args)
@@ -29,7 +28,7 @@ internal class Program
         RunSingleNumberDemo();
     }
 
-    // Part B: Variables, Types, Casting, Boxing and Parsing
+    // Part B
     static void RunTypesDemo()
     {
         Console.WriteLine("\n--- Variables and Types ---");
@@ -52,52 +51,43 @@ internal class Program
         Console.WriteLine($"name = {name}, Type = {name.GetType()}");
         Console.WriteLine($"city = {city}, Type = {city.GetType()}");
 
-        // Implicit conversion: int to long
         int number = 100;
         long bigNumber = number;
 
-        // Implicit conversion: char to int
         char letter = 'A';
         int letterCode = letter;
 
         Console.WriteLine($"int to long = {bigNumber}");
         Console.WriteLine($"char to int = {letterCode}");
 
-        // Explicit cast removes the decimal part.
         double value = 9.7;
         int truncated = (int)value;
 
-        // Convert.ToInt32 rounds to the nearest integer.
         int rounded = Convert.ToInt32(value);
 
         Console.WriteLine($"Explicit cast = {truncated}");
         Console.WriteLine($"Convert.ToInt32 = {rounded}");
 
-        // Integer division versus floating-point division
         int integerDivision = 5 / 2;
         double doubleDivision = 5.0 / 2;
 
         Console.WriteLine($"5 / 2 = {integerDivision}");
         Console.WriteLine($"5.0 / 2 = {doubleDivision}");
 
-        // Boxing: converting a value type into object.
         int originalNumber = 50;
         object boxedNumber = originalNumber;
 
         Console.WriteLine($"Boxed value = {boxedNumber}");
 
-        // Unboxing: converting object back to int.
         int unboxedNumber = (int)boxedNumber;
 
         Console.WriteLine($"Unboxed value = {unboxedNumber}");
 
-        // Parse: converts valid numeric text into an integer.
         string validText = "42";
         int parsedNumber = int.Parse(validText);
 
         Console.WriteLine($"Parsed number = {parsedNumber}");
 
-        // TryParse: handles invalid input without throwing a parsing exception.
         string invalidText = "abc";
         bool success = int.TryParse(invalidText, out int result);
 
@@ -112,9 +102,6 @@ internal class Program
             Console.WriteLine("Parsing failed: input is not a valid integer.");
         }
 
-        // float cannot be implicitly converted to decimal.
-        // decimal convertedValue = floatValue; // Compile-time error.
-
         float floatValue = 12.5f;
         decimal convertedValue = (decimal)floatValue;
 
@@ -122,7 +109,7 @@ internal class Program
         Console.WriteLine($"Converted decimal value = {convertedValue}");
     }
 
-    // Part C: Value Type example
+    // Part C
     struct Point
     {
         public int X;
@@ -135,16 +122,15 @@ internal class Program
 
         Point p1 = new Point { X = 1, Y = 2 };
 
-        // Copies the values of X and Y into a separate struct.
         Point p2 = p1;
 
         p2.X = 99;
 
-        Console.WriteLine($"p1.X = {p1.X}"); // 1
-        Console.WriteLine($"p2.X = {p2.X}"); // 99
+        Console.WriteLine($"p1.X = {p1.X}"); 
+        Console.WriteLine($"p2.X = {p2.X}"); 
     }
 
-    // Part C: Reference Type example
+    // Part C
     static void RunOrderDemo()
     {
         Console.WriteLine("\n--- Reference Type Demo ---");
@@ -165,7 +151,6 @@ internal class Program
 
         o1.CalculateTotal();
 
-        // Copies the reference, not a new Order object.
         Order o2 = o1;
 
         o2.IsPaid = true;
@@ -173,7 +158,6 @@ internal class Program
         Console.WriteLine($"o1.IsPaid = {o1.IsPaid}");
         Console.WriteLine($"o2.IsPaid = {o2.IsPaid}");
 
-        // Order is a class, so assigning it to object does not box it.
         object boxedOrder = o1;
 
         Order o3 = (Order)boxedOrder;
@@ -184,7 +168,7 @@ internal class Program
         o2.PrintSummary();
     }
 
-    // Part D: Shared field accessible by both static methods.
+    // Part D
     static void ReadSharedNumber()
     {
         Console.WriteLine($"Shared number = {sharedNumber}");
@@ -195,16 +179,14 @@ internal class Program
         Console.WriteLine($"Shared number again = {sharedNumber}");
     }
 
-// Part D1: Scope
+// Part D1
 static void RunScopeDemo()
     {
-        Console.WriteLine("\n--- Scope Demo ---");
+        Console.WriteLine("\nScope Demo");
 
-        // A local variable can be accessed only inside its method.
         int localNumber = 5;
         Console.WriteLine($"Local number = {localNumber}");
 
-        // A loop variable is accessible only inside the for loop.
         for (int i = 0; i < 3; i++)
         {
             int insideLoop = i * 10;
@@ -213,59 +195,51 @@ static void RunScopeDemo()
             Console.WriteLine($"insideLoop = {insideLoop}");
         }
 
-        // The following lines cause compile-time errors
-        // because i and insideLoop are out of scope.
-        // Console.WriteLine(i);
-        // Console.WriteLine(insideLoop);
     }
 
-    // Part D2: Compound Assignment
+    // Part D2
     static void RunCompoundAssignmentDemo()
     {
         Console.WriteLine("\n--- Compound Assignment Demo ---");
 
         int total = 100;
 
-        total += 5; // Same as: total = total + 5
+        total += 5; 
         Console.WriteLine($"After += 5: {total}");
 
-        total -= 10; // Same as: total = total - 10
+        total -= 10; 
         Console.WriteLine($"After -= 10: {total}");
 
-        total *= 2; // Same as: total = total * 2
+        total *= 2; 
         Console.WriteLine($"After *= 2: {total}");
 
-        total /= 5; // Same as: total = total / 5
+        total /= 5; 
         Console.WriteLine($"After /= 5: {total}");
 
-        total %= 6; // Same as: total = total % 6
+        total %= 6; 
         Console.WriteLine($"After %= 6: {total}");
     }
 
-    // Part D3: Bitwise Operators
+    // Part D3
     static void RunBitwiseDemo()
     {
-        Console.WriteLine("\n--- Bitwise Operators Demo ---");
+        Console.WriteLine("\n Bitwise Operators Demo");
 
-        int a = 12; // Binary: 1100
-        int b = 10; // Binary: 1010
+        int a = 12; 
+        int b = 10; 
 
         int andResult = a & b;
         int orResult = a | b;
         int xorResult = a ^ b;
 
         Console.WriteLine($"a = {a}, b = {b}");
-        Console.WriteLine($"a & b = {andResult}"); // 8
-        Console.WriteLine($"a | b = {orResult}");  // 14
-        Console.WriteLine($"a ^ b = {xorResult}"); // 6
-
-        // Bitwise & compares the bits of both operands.
-        // Logical && works with Boolean expressions and short-circuits
-        // when the left operand is false.
+        Console.WriteLine($"a & b = {andResult}");
+        Console.WriteLine($"a | b = {orResult}");  
+        Console.WriteLine($"a ^ b = {xorResult}"); 
     }
 
    
-// Part F: LeetCode 136 - Single Number
+// Part F
 
 static int FindSingleNumber(int[] nums)
     {
@@ -281,7 +255,7 @@ static int FindSingleNumber(int[] nums)
 
     static void RunSingleNumberDemo()
     {
-        Console.WriteLine("\n--- Single Number Demo ---");
+        Console.WriteLine("\nSingle Number Demo");
 
         int[] nums1 = { 4, 1, 2, 1, 2 };
         Console.WriteLine($"Single number = {FindSingleNumber(nums1)}");
